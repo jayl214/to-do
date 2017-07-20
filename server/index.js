@@ -1,9 +1,6 @@
-const PORT          = 8080;
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -19,8 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
-
 
 app.use('/', index);
 app.use('/users', users);
@@ -41,10 +36,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
 });
 
 module.exports = app;
